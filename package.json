@@ -1,5 +1,6 @@
 {
   "name": "quote-of-the-day",
+  "homepage": "https://fppcnc.github.io/quote-of-the-day/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
