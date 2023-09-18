@@ -661,6 +661,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-opacity-40 {
+  --tw-bg-opacity: 0.4;
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
@@ -746,10 +750,6 @@ video {
 
 .underline {
   text-decoration-line: underline;
-}
-
-.opacity-75 {
-  opacity: 0.75;
 }
 
 .shadow-xl {
