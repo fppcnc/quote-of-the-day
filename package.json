@@ -18,8 +18,8 @@
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "npm run build:css && react-scripts build",
     "build:css": "tailwind build src/index.css -o src/tailwind.css",
     "watch:css": "tailwind build src/index.css -o src/tailwind.css",
