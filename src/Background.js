@@ -45,9 +45,9 @@ function Background({author, children}) {
             {backgroundImage && (
                 <div className="absolute bottom-2 right-2 text-white text-xs bg-gray-800 bg-opacity-60 p-1 rounded">
                     Photo by <a
-                    href={`https://unsplash.com/@${backgroundImage.username}?utm_source=your_app_name&utm_medium=referral`}
+                    href={`https://unsplash.com/@${backgroundImage.username}?utm_source=quote-of-the-day&utm_medium=referral`}
                     target="_blank" rel="noopener noreferrer" className="underline">{backgroundImage.name}</a> on <a
-                    href="https://unsplash.com/?utm_source=your_app_name&utm_medium=referral" target="_blank"
+                    href="https://unsplash.com/?utm_source=quote-of-the-day&utm_medium=referral" target="_blank"
                     rel="noopener noreferrer" className="underline">Unsplash</a>
                 </div>
             )}
