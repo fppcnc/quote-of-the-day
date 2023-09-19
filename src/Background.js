@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
-function Background({ author, children }) {
+function Background({author, children}) {
     const [backgroundImage, setBackgroundImage] = useState(null);
-
 
 
     useEffect(() => {
@@ -13,7 +12,11 @@ function Background({ author, children }) {
                 .then(response => response.json())
                 .then(data => {
                     if (data.results && data.results.length > 0) {
-                        return data.results[0].urls.regular;
+                        return {
+                            url: data.results[0].urls.regular,
+                            username: data.results[0].user.username,
+                            name: data.results[0].user.name
+                        };
                     }
                     return null;
                 });
@@ -31,13 +34,23 @@ function Background({ author, children }) {
 
     return (
         <div
-            className="background fixed inset-0 flex items-center justify-center"  // This will make the div cover the entire viewport
-            style={backgroundImage ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+            className="background fixed inset-0 flex items-center justify-center"
+            style={backgroundImage ? {
+                backgroundImage: `url(${backgroundImage.url})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            } : {}}
         >
             {children}
-            <div className="absolute bottom-2 right-2 text-white text-xs bg-gray-800 bg-opacity-60 p-1 rounded">
-                Photos by <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="underline">Unsplash</a>
-            </div>
+            {backgroundImage && (
+                <div className="absolute bottom-2 right-2 text-white text-xs bg-gray-800 bg-opacity-60 p-1 rounded">
+                    Photo by <a
+                    href={`https://unsplash.com/@${backgroundImage.username}?utm_source=your_app_name&utm_medium=referral`}
+                    target="_blank" rel="noopener noreferrer" className="underline">{backgroundImage.name}</a> on <a
+                    href="https://unsplash.com/?utm_source=your_app_name&utm_medium=referral" target="_blank"
+                    rel="noopener noreferrer" className="underline">Unsplash</a>
+                </div>
+            )}
         </div>
     );
 }
