@@ -2,7 +2,7 @@
 
 *Inspired by popular quotes and their authors*
 
-https://your-app-link-here.com/
+https://fppcnc.github.io/quote-of-the-day/
 
 ## Overview
 
