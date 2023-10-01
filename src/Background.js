@@ -5,22 +5,33 @@ function Background({author, children}) {
 
 
     useEffect(() => {
-        const fetchBackgroundImage = (authorName) => {
+        const fetchBackgroundImage = async (authorName) => {
             const UNSPLASH_API_URL = `https://api.unsplash.com/search/photos?query=${authorName}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`;
 
-            return fetch(UNSPLASH_API_URL)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.results && data.results.length > 0) {
-                        return {
-                            url: data.results[0].urls.regular,
-                            username: data.results[0].user.username,
-                            name: data.results[0].user.name
-                        };
-                    }
-                    return null;
-                });
+            let data = await fetch(UNSPLASH_API_URL).then(response => response.json());
+
+            if (data.results && data.results.length > 0) {
+                return {
+                    url: data.results[0].urls.regular,
+                    username: data.results[0].user.username,
+                    name: data.results[0].user.name
+                };
+            } else {
+                // try fetching with "nature" if no results are found
+                data = await fetch(UNSPLASH_API_URL.replace(authorName, "nature")).then(response => response.json());
+
+                if (data.results && data.results.length > 0) {
+                    return {
+                        url: data.results[0].urls.regular,
+                        username: data.results[0].user.username,
+                        name: data.results[0].user.name
+                    };
+                }
+            }
+
+            return null;
         };
+
 
         if (author) {
             fetchBackgroundImage(author).then(imageUrl => {
